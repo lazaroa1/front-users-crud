@@ -1,11 +1,11 @@
 # Clients Crud
 
 ### Criar estrutura do projeto
-[x] Instalaçao da lib de navingation
-  [x] Criação do component de login
-    [x] Criação do component de checagem de dados para a recuperação de senha
-      [x] Criação do component de inserção da nova senha
-        [x] Navegação por essas telas
+- [x] Instalaçao da lib de navingation
+  - [x] Criação do component de login
+    - [x] Criação do component de checagem de dados para a recuperação de senha
+      - [x] Criação do component de inserção da nova senha
+        - [x] Navegação por essas telas
   [x] Criação do component de listagem dos usuarios
     [x] Criação do component de criação do usuarios
       [x] Criação do component de exibição do usuario
