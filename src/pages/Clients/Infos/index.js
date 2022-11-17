@@ -18,7 +18,7 @@ const USER_INITIAL_VALUE = {
 
 function Infos() {
   const navigate = useNavigate();
-  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+  let savedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
@@ -120,13 +120,13 @@ function Infos() {
             value={user.status}
             onChange={changeValue}
           >
-            <option value="actived" key="actived">
+            <option value="ativado" key="actived">
               Ativado
             </option>
-            <option value="inactivated" key="inactivated">
+            <option value="inativado" key="inactivated">
               Inativado
             </option>
-            <option value="blocked" key="blocked">
+            <option value="bloqueado" key="blocked">
               Bloqueado
             </option>
           </select>

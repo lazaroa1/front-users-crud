@@ -1,9 +1,30 @@
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 function Clients() {
   const navigate = useNavigate();
-  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+  const [savedUsers, setSavedUsers] = useState(
+    JSON.parse(localStorage.getItem("users")) || []
+  );
+
+  const changeStatus = useCallback(
+    (newStatus, user_id) => {
+      const updatedUserStatus = savedUsers.map((user) => {
+        if (user.id === user_id) {
+          return { ...user, status: newStatus };
+        }
+
+        return user;
+      });
+
+      localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+
+      setSavedUsers(updatedUserStatus);
+    },
+    [savedUsers]
+  );
 
   return (
     <div>
@@ -28,17 +49,14 @@ function Clients() {
               <p>Periodo de Nascimento</p>
             </th>
             <th>
-              <p>Periodo de Inserção</p>
-            </th>
-            <th>
               <p>Periodo da Alteração</p>
             </th>
             <th>
               <p>Faixa Etaria</p>
             </th>
-            <tr>
-              <th>...</th>
-            </tr>
+            <th>
+              <p>...</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +72,24 @@ function Clients() {
                 <p>{user.login}</p>
               </td>
               <td>
-                <p>{user.status}</p>
+                <select
+                  name="status"
+                  type="text"
+                  value={user.status}
+                  onChange={(event) =>
+                    changeStatus(event.target.value, user.id)
+                  }
+                >
+                  <option value="ativado" key="actived">
+                    Ativado
+                  </option>
+                  <option value="inativado" key="inactivated">
+                    Inativado
+                  </option>
+                  <option value="bloqueado" key="blocked">
+                    Bloqueado
+                  </option>
+                </select>
               </td>
               <td>
                 <p>{moment(user.birth_date).format("DD/MM/YYYY")}</p>
