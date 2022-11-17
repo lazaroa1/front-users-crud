@@ -22,8 +22,8 @@
   - [x] Listar[nome, cpf, login, situação(status), periodo de nascimento, periodo de inserção, periodo da alteração, faixa etaria]
     - [x] Navegação para criação e edição do usuario
       - [x] alterar o status do usuario na tela de consulta
-- [ ] Implementar a edição do usuario
-  - [ ] Edição do usuario atualizar o updated_at com o moment
+- [x] Implementar a edição do usuario
+  - [x] Edição do usuario atualizar o updated_at com o moment
 - [x] Implementar a exclusão de todos os usuarios ou apenas de um(exclusão ira apenas alterar o status do usuario para inativo)
 
 ### Logica do login
