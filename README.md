@@ -21,7 +21,7 @@
 - [x] Implementação da tela de consulta de usuario
   - [x] Listar[nome, cpf, login, situação(status), periodo de nascimento, periodo de inserção, periodo da alteração, faixa etaria]
     - [x] Navegação para criação e edição do usuario
-      - [ ] alterar o status do usuario na tela de consulta
+      - [x] alterar o status do usuario na tela de consulta
 - [ ] Implementar a edição do usuario
   - [ ] Criação do usuario com a data de criação e a data de alteração sendo gerada por moment
 - [ ] Implementar a exclusão de todos os usuarios ou apenas de um(exclusão ira apenas alterar o status do usuario para inativo)
