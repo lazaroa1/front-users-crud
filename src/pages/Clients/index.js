@@ -26,10 +26,22 @@ function Clients() {
     [savedUsers]
   );
 
+  function disableAllUsers() {
+    const updatedUserStatus = savedUsers.map((user) => ({
+      ...user,
+      status: "inativado",
+    }));
+
+    localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+
+    setSavedUsers(updatedUserStatus);
+  }
+
   return (
     <div>
       <h1>Consulta de usuarios</h1>
       <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
+      <button onClick={disableAllUsers}>Remover usuario</button>
       <table width="100%">
         <thead>
           <tr>
@@ -106,6 +118,9 @@ function Clients() {
               <td>
                 <button onClick={() => navigate(`/client-info/${user.id}`)}>
                   Alterar
+                </button>
+                <button onClick={() => changeStatus("inativado", user.id)}>
+                  Desabilitar
                 </button>
               </td>
             </tr>
