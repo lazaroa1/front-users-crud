@@ -23,5 +23,11 @@
     - [x] Navegação para criação e edição do usuario
       - [x] alterar o status do usuario na tela de consulta
 - [ ] Implementar a edição do usuario
-  - [ ] Criação do usuario com a data de criação e a data de alteração sendo gerada por moment
-- [ ] Implementar a exclusão de todos os usuarios ou apenas de um(exclusão ira apenas alterar o status do usuario para inativo)
+  - [ ] Edição do usuario atualizar o updated_at com o moment
+- [x] Implementar a exclusão de todos os usuarios ou apenas de um(exclusão ira apenas alterar o status do usuario para inativo)
+
+### Logica do login
+ - [ ] Verficação do login e senha
+ - [ ] Verificação dos dados(login, email) para navegar para a troca de senha
+ - [ ] Alteração de senha
+ - [ ] Criação do usuario na tela de login 
