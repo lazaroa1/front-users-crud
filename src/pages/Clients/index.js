@@ -61,6 +61,9 @@ function Clients() {
               <p>Periodo de Nascimento</p>
             </th>
             <th>
+              <p>Periodo da Criação</p>
+            </th>
+            <th>
               <p>Periodo da Alteração</p>
             </th>
             <th>
