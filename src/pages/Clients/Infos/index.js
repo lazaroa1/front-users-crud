@@ -18,16 +18,19 @@ const USER_INITIAL_VALUE = {
 
 function Infos() {
   const navigate = useNavigate();
+  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
   function changeValue(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
 
-  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
-  console.log([...savedUsers]);
   function onSubmit() {
-    localStorage.setItem("users", JSON.stringify([...savedUsers, user]));
+    localStorage.setItem(
+      "users",
+      JSON.stringify([...savedUsers, { ...user, id: savedUsers.length + 1 }])
+    );
 
     navigate("/clients");
   }
