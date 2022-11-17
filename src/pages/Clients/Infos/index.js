@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
 const USER_INITIAL_VALUE = {
@@ -12,14 +12,12 @@ const USER_INITIAL_VALUE = {
   birth_date: "",
   mother_name: "",
   status: "actived",
-  created_at: moment().format("YYYY-MM-DD"),
-  updated_at: moment().format("YYYY-MM-DD"),
 };
 
 function Infos() {
   const navigate = useNavigate();
-  let savedUsers = JSON.parse(localStorage.getItem("users")) || [];
-
+  const { id } = useParams();
+  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
   function changeValue(e) {
@@ -27,13 +25,40 @@ function Infos() {
   }
 
   function onSubmit() {
-    localStorage.setItem(
-      "users",
-      JSON.stringify([...savedUsers, { ...user, id: savedUsers.length + 1 }])
-    );
+    if (id) {
+      const updatedUserStatus = savedUsers.map((item) => {
+        if (item.id === Number(id)) {
+          return { ...user, updated_at: moment().format("YYYY-MM-DD") };
+        }
+
+        return item;
+      });
+      localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+    } else {
+      localStorage.setItem(
+        "users",
+        JSON.stringify([
+          ...savedUsers,
+          {
+            ...user,
+            id: savedUsers.length + 1,
+            created_at: moment().format("YYYY-MM-DD"),
+            updated_at: moment().format("YYYY-MM-DD"),
+          },
+        ])
+      );
+    }
 
     navigate("/clients");
   }
+
+  useMemo(() => {
+    if (id) {
+      const user = JSON.parse(localStorage.getItem("users"));
+
+      setUser(user[id - 1]);
+    }
+  }, [id]);
 
   return (
     <div>
@@ -132,7 +157,7 @@ function Infos() {
           </select>
         </div>
       </form>
-      <button onClick={onSubmit}>salvar</button>
+      <button onClick={onSubmit}>{id ? "Salvar alteração" : "Salvar"}</button>
     </div>
   );
 }
