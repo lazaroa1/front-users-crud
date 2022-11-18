@@ -33,8 +33,8 @@
   - [x] Caso de falha no login, apresensar um modal alertando
 - [x] Verificação dos dados(login, email) para navegar para a troca de senha
   - [x] Toast de informações invalida
-- [ ] Alteração de senha
-  - [ ] Toast de confirmação de senha alterada
+- [x] Alteração de senha
+  - [x] Toast de confirmação de senha alterada
 
 ### Logica do cadastro e Edição
 
