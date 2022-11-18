@@ -39,9 +39,9 @@ function Clients() {
 
   return (
     <div>
-      <h1>Consulta de uusuários</h1>
+      <h1>Consulta de usuários</h1>
       <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
-      <button onClick={disableAllUsers}>Remover uusuário</button>
+      <button onClick={disableAllUsers}>Remover usuário</button>
       <table width="100%">
         <thead>
           <tr>
