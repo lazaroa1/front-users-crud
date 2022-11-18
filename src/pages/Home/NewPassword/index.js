@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { users } from "../../../utils";
 
 function NewPassword() {
   const navigate = useNavigate();
   const { login } = useParams();
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const [password, setPassword] = useState({
     newPassword: "",
