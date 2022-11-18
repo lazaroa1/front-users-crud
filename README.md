@@ -31,8 +31,8 @@
 - [x] Criar um uusuário padrão(login, senha, id)
 - [x] Verficação do login e senha
   - [x] Caso de falha no login, apresensar um modal alertando
-- [ ] Verificação dos dados(login, email) para navegar para a troca de senha
-  - [ ] Toast de informações invalidar
+- [x] Verificação dos dados(login, email) para navegar para a troca de senha
+  - [x] Toast de informações invalida
 - [ ] Alteração de senha
   - [ ] Toast de confirmação de senha alterada
 
