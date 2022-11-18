@@ -38,11 +38,21 @@
 
 ### Logica do cadastro e Edição
 
-- [ ] Criação do usuário verificar se o usuário ja existe(login)
-- [ ] Edição do usuário verificar se o usuário ja existe(login e id)
-- [ ] Adição de um botão para deslogar
+- [x] Criação do usuário verificar se o usuário ja existe(login)
+- [x] Edição do usuário verificar se o usuário ja existe(login e id)
+- [x] Adição de um botão para deslogar
 
 ### Logica de consulta do usuário
 
 - [ ] Adição dos campos [busca(nome, login, cpf), status, periodo de nascimento, periodo de inserção, periodo de alteração, faixa etaria(Maior que 18 e menor que 26; Maior que 25 e menor que 31; Maior que 30 e menor que 36; Maior que 35 e menor que 41; Maior que 40.)]
 - [ ] Listar apenas os que NÃO são inativos apenas que o filtro inativo esteja habilitado
+
+### Refatorar e estilização
+
+- [ ] Refatorar codigos
+  - [ ] Login
+    - [ ] Verificação dos dados
+      - [ ] Consulta de de usuários
+        - [ ] Cadastro de usuários
+          - [ ] Adição de mascara no cadastro de usuario
+- [ ] Estilizar as telas
