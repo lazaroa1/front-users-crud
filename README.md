@@ -28,9 +28,9 @@
 
 ### Logica do login
 
-- [ ] Criação um usuario padrão(login, senha, id)
-- [ ] Verficação do login e senha
-  - [ ] Caso de falha no login, apresensar um modal alertando
+- [x] Criar um usuario padrão(login, senha, id)
+- [x] Verficação do login e senha
+  - [x] Caso de falha no login, apresensar um modal alertando
 - [ ] Verificação dos dados(login, email) para navegar para a troca de senha
 - [ ] Alteração de senha
 
