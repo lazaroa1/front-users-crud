@@ -11,7 +11,7 @@ export default function Router() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/verification-infos" element={<VerificationInfos />} />
-      <Route path="/new-password" element={<NewPassword />} />
+      <Route path="/new-password/:login" element={<NewPassword />} />
       <Route path="/clients" element={<Clients />} />
       <Route path="/client-info" element={<Infos />} />
       <Route path="/client-info/:id" element={<Infos />} />
