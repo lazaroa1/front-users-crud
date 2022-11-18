@@ -2,12 +2,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
+const USER_INITIAL_VALUE = {
+  name: "",
+  login: "",
+  birth_date: "",
+  created_at: "",
+  updated_at: "",
+  status: "actived",
+};
+
 function Clients() {
   const navigate = useNavigate();
 
   const [savedUsers, setSavedUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
+
+  const [filters, setFilters] = useState(USER_INITIAL_VALUE);
+
+  function changeFilter(e) {
+    setFilters({ ...filters, [e.target.name]: e.target.value });
+  }
 
   function changeStatus(newStatus, user_id) {
     const updatedUserStatus = savedUsers.map((user) => {
@@ -40,6 +55,88 @@ function Clients() {
       <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
       <button onClick={disableAllUsers}>Remover usuário</button>
       <button onClick={() => navigate("/")}>Sair</button>
+      <div>
+        <div>
+          <label htmlFor="name">Nome:</label>
+          <input
+            name="name"
+            type="text"
+            value={filters.name}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="login">Login:</label>
+          <input
+            name="login"
+            type="text"
+            value={filters.login}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="cpf">CPF:</label>
+          <input
+            name="cpf"
+            type="text"
+            value={filters.cpf}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="birth_date">Data de nascimento:</label>
+          <input
+            name="birth_date"
+            type="date"
+            value={filters.birth_date}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="birth_date">Periodo de inserção:</label>
+          <input
+            name="created_at"
+            type="date"
+            value={filters.created_at}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="birth_date">Periodo de alteração:</label>
+          <input
+            name="updated_at"
+            type="date"
+            value={filters.updated_at}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Status:</label>
+          <select
+            name="age"
+            type="text"
+            value={filters.age}
+            onChange={changeFilter}
+          >
+            <option value="ativado" key="actived">
+              Maior que 18 e menor que 26
+            </option>
+            <option value="inativado" key="inactivated">
+              Maior que 25 e menor que 31
+            </option>
+            <option value="bloqueado" key="blocked">
+              Maior que 30 e menor que 36
+            </option>
+            <option value="bloqueado" key="blocked">
+              Maior que 35 e menor que 41
+            </option>
+            <option value="bloqueado" key="blocked">
+              Maior que 40
+            </option>
+          </select>
+        </div>
+        <button onClick={disableAllUsers}>Buscar</button>
+      </div>
       <table width="100%">
         <thead>
           <tr>
