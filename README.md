@@ -27,7 +27,19 @@
 - [x] Implementar a exclusão de todos os usuarios ou apenas de um(exclusão ira apenas alterar o status do usuario para inativo)
 
 ### Logica do login
- - [ ] Verficação do login e senha
- - [ ] Verificação dos dados(login, email) para navegar para a troca de senha
- - [ ] Alteração de senha
- - [ ] Criação do usuario na tela de login 
+
+- [ ] Criação um usuario padrão(login, senha, id)
+- [ ] Verficação do login e senha
+  - [ ] Caso de falha no login, apresensar um modal alertando
+- [ ] Verificação dos dados(login, email) para navegar para a troca de senha
+- [ ] Alteração de senha
+
+### Logica do cadastro e Edição
+
+- [ ] criação do usuario verificar se o usuario ja existe(login)
+- [ ] edição do usuario verificar se o usuario ja existe(login e id)
+
+### Logica de consulta do usuario
+
+- [ ] Adição dos campos [busca(nome, login, cpf), status, periodo de nascimento, periodo de inserção, periodo de alteração, faixa etaria(Maior que 18 e menor que 26; Maior que 25 e menor que 31; Maior que 30 e menor que 36; Maior que 35 e menor que 41; Maior que 40.)]
+- [ ] Listar apenas os que NÃO são inativos apenas que o filtro inativo esteja habilitado
