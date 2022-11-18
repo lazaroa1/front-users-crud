@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
@@ -9,22 +9,19 @@ function Clients() {
     JSON.parse(localStorage.getItem("users")) || []
   );
 
-  const changeStatus = useCallback(
-    (newStatus, user_id) => {
-      const updatedUserStatus = savedUsers.map((user) => {
-        if (user.id === user_id) {
-          return { ...user, status: newStatus };
-        }
+  function changeStatus(newStatus, user_id) {
+    const updatedUserStatus = savedUsers.map((user) => {
+      if (user.id === user_id) {
+        return { ...user, status: newStatus };
+      }
 
-        return user;
-      });
+      return user;
+    });
 
-      localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+    localStorage.setItem("users", JSON.stringify(updatedUserStatus));
 
-      setSavedUsers(updatedUserStatus);
-    },
-    [savedUsers]
-  );
+    setSavedUsers(updatedUserStatus);
+  }
 
   function disableAllUsers() {
     const updatedUserStatus = savedUsers.map((user) => ({
@@ -42,6 +39,7 @@ function Clients() {
       <h1>Consulta de usuários</h1>
       <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
       <button onClick={disableAllUsers}>Remover usuário</button>
+      <button onClick={() => navigate("/")}>Sair</button>
       <table width="100%">
         <thead>
           <tr>

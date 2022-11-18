@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
+import { toast } from "react-toastify";
+
 const USER_INITIAL_VALUE = {
   name: "",
   login: "",
@@ -17,7 +19,7 @@ const USER_INITIAL_VALUE = {
 function Infos() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+  const users = JSON.parse(localStorage.getItem("users"));
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
   function changeValue(e) {
@@ -26,30 +28,89 @@ function Infos() {
 
   function onSubmit() {
     if (id) {
-      const updatedUserStatus = savedUsers.map((item) => {
-        if (item.id === Number(id)) {
-          return { ...user, updated_at: moment().format("YYYY-MM-DD") };
-        }
-
-        return item;
-      });
-      localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+      updateUser();
     } else {
+      createUser();
+    }
+  }
+
+  function createUser() {
+    const userExists = users.some((item) => item.login === user.login);
+
+    if (!userExists) {
       localStorage.setItem(
         "users",
         JSON.stringify([
-          ...savedUsers,
+          ...users,
           {
             ...user,
-            id: savedUsers.length + 1,
+            id: users.length + 1,
             created_at: moment().format("YYYY-MM-DD"),
             updated_at: moment().format("YYYY-MM-DD"),
           },
         ])
       );
-    }
 
-    navigate("/clients");
+      navigate("/clients");
+
+      toast.success("Usuário cadastrado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    } else {
+      toast.error("Login ja cadastrado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    }
+  }
+
+  function updateUser() {
+    const userExists = users.some(
+      (item) => item.id !== id && item.login === user.login
+    );
+
+    if (!userExists) {
+      const updatedUserStatus = users.map((item) => {
+        if (item.id === Number(id)) {
+          return { ...user, updated_at: moment().format("YYYY-MM-DD") };
+        }
+        return item;
+      });
+      localStorage.setItem("users", JSON.stringify(updatedUserStatus));
+
+      navigate("/clients");
+
+      toast.success("Usuário alterado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    } else {
+      toast.error("Login ja cadastrado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    }
   }
 
   useMemo(() => {
