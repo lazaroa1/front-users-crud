@@ -5,6 +5,9 @@ import moment from "moment";
 import ReactPaginate from "react-paginate";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import MyDocument from "./MyDocument";
 
 import { getAge } from "../../utils";
 
@@ -65,8 +68,6 @@ function Clients() {
     }));
 
     localStorage.setItem("users", JSON.stringify(updatedUserStatus));
-
-    setFilteredUser(updatedUserStatus);
   }
 
   function filterUser() {
@@ -102,7 +103,6 @@ function Clients() {
   }
 
   async function exportToExcel(excelData, fileName) {
-    console.log(excelData);
     const ws = XLSX.utils.json_to_sheet(excelData);
     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
@@ -119,6 +119,13 @@ function Clients() {
       <button onClick={() => exportToExcel(savedUsers, "TESTE")}>
         Baixar excel
       </button>
+      <PDFDownloadLink
+        document={<MyDocument />}
+        fileName="movielist.pdf"
+        style={{}}
+      >
+        teste
+      </PDFDownloadLink>
       <div>
         <div>
           <label htmlFor="name">Nome:</label>
