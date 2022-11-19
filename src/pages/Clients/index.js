@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
+import * as FileSaver from "file-saver";
+import XLSX from "sheetjs-style";
 
 import { getAge } from "../../utils";
 
@@ -31,6 +33,9 @@ function Clients() {
     currentPage * PER_PAGE,
     currentPage * PER_PAGE + PER_PAGE
   );
+  const fileType =
+    "application/vnd.openxmlformats-officedoment.spreadsheetml.sheet;charset=UTF-8";
+  const fileExtension = ".xlsx";
 
   function changeFilter(e) {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -96,12 +101,24 @@ function Clients() {
     setCurrentPage(selectedPage);
   }
 
+  async function exportToExcel(excelData, fileName) {
+    console.log(excelData);
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  }
+
   return (
     <div>
       <h1>Consulta de usuários</h1>
       <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
       <button onClick={disableAllUsers}>Remover usuário</button>
       <button onClick={() => navigate("/")}>Sair</button>
+      <button onClick={() => exportToExcel(savedUsers, "TESTE")}>
+        Baixar excel
+      </button>
       <div>
         <div>
           <label htmlFor="name">Nome:</label>
