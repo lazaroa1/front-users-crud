@@ -2,23 +2,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
+import { getAge } from "../../utils";
+
 const USER_INITIAL_VALUE = {
   name: "",
+  cpf: "",
   login: "",
   birth_date: "",
   created_at: "",
   updated_at: "",
-  status: "actived",
+  status: "ativado",
 };
 
 function Clients() {
   const navigate = useNavigate();
+  const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-  const [savedUsers, setSavedUsers] = useState(
-    JSON.parse(localStorage.getItem("users")) || []
-  );
-
+  const [filteredUsers, setFilteredUser] = useState([]);
   const [filters, setFilters] = useState(USER_INITIAL_VALUE);
+  const [filterAge, setFilterAge] = useState("");
 
   function changeFilter(e) {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -32,10 +34,13 @@ function Clients() {
 
       return user;
     });
+    const getFilteredUsers = updatedUserStatus.filter((item) =>
+      filteredUsers.some((zItem) => zItem.id === item.id)
+    );
 
     localStorage.setItem("users", JSON.stringify(updatedUserStatus));
 
-    setSavedUsers(updatedUserStatus);
+    setFilteredUser(getFilteredUsers);
   }
 
   function disableAllUsers() {
@@ -46,7 +51,35 @@ function Clients() {
 
     localStorage.setItem("users", JSON.stringify(updatedUserStatus));
 
-    setSavedUsers(updatedUserStatus);
+    setFilteredUser(updatedUserStatus);
+  }
+
+  function filterUser() {
+    let users = [];
+    users = savedUsers.filter((item) => {
+      for (let key in filters) {
+        if (filters[key] !== "") {
+          return filters[key] !== "" && item[key] === filters[key];
+        }
+      }
+    });
+
+    if (filterAge && users.length > 0) {
+      users = users.filter((item) => {
+        const userAge = getAge(item.birth_date);
+        const ubsersByAge = {
+          eighteen_twentySix: userAge >= 18 && userAge <= 26,
+          twentyFive_thirtyOne: userAge >= 25 && userAge <= 31,
+          thirty_thirtySix: userAge >= 30 && userAge <= 36,
+          thirtyFive_fortyOne: userAge >= 35 && userAge <= 41,
+          forty: userAge >= 40,
+        }[filterAge];
+
+        return ubsersByAge;
+      });
+    }
+
+    setFilteredUser(users);
   }
 
   return (
@@ -66,6 +99,15 @@ function Clients() {
           />
         </div>
         <div>
+          <label htmlFor="login">CPF:</label>
+          <input
+            name="cpf"
+            type="text"
+            value={filters.cpf}
+            onChange={changeFilter}
+          />
+        </div>
+        <div>
           <label htmlFor="login">Login:</label>
           <input
             name="login"
@@ -75,13 +117,23 @@ function Clients() {
           />
         </div>
         <div>
-          <label htmlFor="cpf">CPF:</label>
-          <input
-            name="cpf"
+          <label htmlFor="status">Status:</label>
+          <select
+            name="status"
             type="text"
-            value={filters.cpf}
+            value={filters.status}
             onChange={changeFilter}
-          />
+          >
+            <option value="ativado" key="actived">
+              Ativado
+            </option>
+            <option value="inativado" key="inactivated">
+              Inativado
+            </option>
+            <option value="bloqueado" key="blocked">
+              Bloqueado
+            </option>
+          </select>
         </div>
         <div>
           <label htmlFor="birth_date">Data de nascimento:</label>
@@ -115,27 +167,28 @@ function Clients() {
           <select
             name="age"
             type="text"
-            value={filters.age}
-            onChange={changeFilter}
+            value={filterAge}
+            onChange={(event) => setFilterAge(event.target.value)}
           >
-            <option value="ativado" key="actived">
+            <option value="">Selecione uma idade</option>
+            <option value="eighteen_twentySix" key="1">
               Maior que 18 e menor que 26
             </option>
-            <option value="inativado" key="inactivated">
+            <option value="twentyFive_thirtyOne" key="2">
               Maior que 25 e menor que 31
             </option>
-            <option value="bloqueado" key="blocked">
+            <option value="thirty_thirtySix" key="3">
               Maior que 30 e menor que 36
             </option>
-            <option value="bloqueado" key="blocked">
+            <option value="thirtyFive_fortyOne" key="4">
               Maior que 35 e menor que 41
             </option>
-            <option value="bloqueado" key="blocked">
+            <option value="forty" key="5">
               Maior que 40
             </option>
           </select>
         </div>
-        <button onClick={disableAllUsers}>Buscar</button>
+        <button onClick={filterUser}>Buscar</button>
       </div>
       <table width="100%">
         <thead>
@@ -170,7 +223,7 @@ function Clients() {
           </tr>
         </thead>
         <tbody>
-          {savedUsers?.map((user) => (
+          {filteredUsers?.map((user) => (
             <tr key={user.id}>
               <td>
                 <p>{user.name}</p>
