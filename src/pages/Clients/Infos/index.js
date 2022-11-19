@@ -13,7 +13,7 @@ const USER_INITIAL_VALUE = {
   cpf: "",
   birth_date: "",
   mother_name: "",
-  status: "actived",
+  status: "ativado",
 };
 
 function Infos() {
@@ -76,13 +76,14 @@ function Infos() {
   }
 
   function updateUser() {
+    const user_id = Number(id);
     const userExists = users.some(
-      (item) => item.id !== id && item.login === user.login
+      (item) => item.id !== user_id && item.login === user.login
     );
 
     if (!userExists) {
       const updatedUserStatus = users.map((item) => {
-        if (item.id === Number(id)) {
+        if (item.id === user_id) {
           return { ...user, updated_at: moment().format("YYYY-MM-DD") };
         }
         return item;
@@ -91,25 +92,9 @@ function Infos() {
 
       navigate("/clients");
 
-      toast.success("Usuário alterado", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-      });
+      toast.success("Usuário alterado");
     } else {
-      toast.error("Login ja cadastrado", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-      });
+      toast.error("Login ja cadastrado");
     }
   }
 
