@@ -1,6 +1,8 @@
+/* eslint-disable array-callback-return */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import ReactPaginate from "react-paginate";
 
 import { getAge } from "../../utils";
 
@@ -14,6 +16,8 @@ const USER_INITIAL_VALUE = {
   status: "ativado",
 };
 
+const PER_PAGE = 1;
+
 function Clients() {
   const navigate = useNavigate();
   const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -21,6 +25,12 @@ function Clients() {
   const [filteredUsers, setFilteredUser] = useState([]);
   const [filters, setFilters] = useState(USER_INITIAL_VALUE);
   const [filterAge, setFilterAge] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const currentUsersPage = filteredUsers.slice(
+    currentPage * PER_PAGE,
+    currentPage * PER_PAGE + PER_PAGE
+  );
 
   function changeFilter(e) {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -80,6 +90,10 @@ function Clients() {
     }
 
     setFilteredUser(users);
+  }
+
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
   }
 
   return (
@@ -223,7 +237,7 @@ function Clients() {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers?.map((user) => (
+          {currentUsersPage?.map((user) => (
             <tr key={user.id}>
               <td>
                 <p>{user.name}</p>
@@ -278,6 +292,13 @@ function Clients() {
           ))}
         </tbody>
       </table>
+      <ReactPaginate
+        previousLabel="← Previous"
+        nextLabel="Next →"
+        pageCount={Math.ceil(filteredUsers.length / PER_PAGE)}
+        onPageChange={handlePageClick}
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 }
