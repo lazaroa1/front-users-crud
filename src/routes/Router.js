@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Login from "../pages/Login";
-import VerificationInfos from "../pages/Home/VerificationInfos";
+import VerificationInfos from "../pages/VerificationInfos";
 import NewPassword from "../pages/Home/NewPassword";
 import Clients from "../pages/Clients";
 import Infos from "../pages/Clients/Infos";
