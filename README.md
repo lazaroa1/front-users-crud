@@ -57,4 +57,9 @@
         - [ ] Cadastro de usuários
           - [ ] Adição de mascara no cadastro de usuario
 - [ ] Estilizar as telas
+  - [x] Login
+    - [ ] Verificação dos dados
+      - [ ] Consulta de de usuários
+        - [ ] Cadastro de usuários
+          - [ ] Adição de mascara no cadastro de usuario
 - [ ] Adição de mascaras para o cpf, telefone

@@ -6,7 +6,6 @@ import ReactPaginate from "react-paginate";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import MyDocument from "./MyDocument";
 
 import { getAge } from "../../utils";
