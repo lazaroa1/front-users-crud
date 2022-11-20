@@ -1,11 +1,11 @@
-import { Container } from "./styles";
+import { Container, CustomButton } from "./styles";
 
-function Button({ children, ...props }) {
+function Button({ children, light, ...props }) {
   return (
     <Container>
-      <button className="btn" {...props}>
+      <CustomButton light {...props}>
         {children}
-      </button>
+      </CustomButton>
     </Container>
   );
 }

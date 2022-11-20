@@ -1,7 +1,7 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import moment from "moment";
 
-function MyDocument() {
+function PdfPage() {
   const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
   const styles = StyleSheet.create({
@@ -44,7 +44,7 @@ function MyDocument() {
           <Text>Faixa Etaria</Text>
         </View>
         {savedUsers.map((item) => (
-          <View>
+          <View key={item.id}>
             <Text>{item.name}</Text>
             <Text>{item.cpf}</Text>
             <Text>{item.login}</Text>
@@ -60,4 +60,4 @@ function MyDocument() {
   );
 }
 
-export default MyDocument;
+export default PdfPage;
