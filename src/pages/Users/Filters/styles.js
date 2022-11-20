@@ -5,14 +5,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-
-  .btn-filter {
-    display: flex;
-    align-items: center;
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  margin-bottom: 10px;
 `;
 
 export const IconSearch = styled(GoSearch)`

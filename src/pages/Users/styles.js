@@ -4,12 +4,12 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10vh;
+  justify-content: center;
+  align-items: flex-start;
 
   .content {
     width: 180vh;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

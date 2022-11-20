@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import ReactPaginate from "react-paginate";
 
-import { Container } from "./styles";
+import { Container, IconPencil, IconX, Pagination } from "./styles";
 
 function UsersTable({ users, savedUsers, filteredUsers, setFilteredUser }) {
   const navigate = useNavigate();
-  const PER_PAGE = 1;
+  const PER_PAGE = 10;
   const [currentPage, setCurrentPage] = useState(0);
   const currentUsersPage = filteredUsers.slice(
     currentPage * PER_PAGE,
@@ -38,7 +37,7 @@ function UsersTable({ users, savedUsers, filteredUsers, setFilteredUser }) {
 
   return (
     <Container>
-      <table width="100%">
+      <table width="100%" cellPadding={0} cellSpacing={0}>
         <thead>
           <tr>
             <th>
@@ -115,24 +114,38 @@ function UsersTable({ users, savedUsers, filteredUsers, setFilteredUser }) {
                 <p>{moment().diff(user.birth_date, "years")}</p>
               </td>
               <td>
-                <button onClick={() => navigate(`/user-info/${user.id}`)}>
-                  Alterar
-                </button>
-                <button onClick={() => changeStatus("inativado", user.id)}>
-                  Desabilitar
-                </button>
+                <div>
+                  <div
+                    className="btn-filter"
+                    onClick={() => navigate(`/user-info/${user.id}`)}
+                  >
+                    <IconPencil />
+                  </div>
+                  <div
+                    className="btn-filter"
+                    onClick={() => changeStatus("inativado", user.id)}
+                  >
+                    <IconX />
+                  </div>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ReactPaginate
-        previousLabel="← Previous"
-        nextLabel="Next →"
-        pageCount={Math.ceil(filteredUsers.length / PER_PAGE)}
-        onPageChange={handlePageClick}
-        renderOnZeroPageCount={null}
-      />
+      <div className="pagination-container">
+        <Pagination
+          previousLabel="Voltar"
+          nextLabel="Proximo"
+          pageCount={Math.ceil(filteredUsers.length / PER_PAGE)}
+          onPageChange={handlePageClick}
+          renderOnZeroPageCount={null}
+          previousClassName="previus"
+          nextClassName="next"
+          activeClassName="page"
+          pageClassName="teste"
+        />
+      </div>
     </Container>
   );
 }

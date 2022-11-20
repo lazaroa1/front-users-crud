@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   label {
-    color: ${({ theme }) => theme.darkOne};
+    color: ${({ theme }) => theme.blackOne};
     font-size: ${({ theme }) => theme.fonts.sizeSmall}px;
   }
 
@@ -27,6 +27,14 @@ const GlobalStyles = createGlobalStyle`
 
   h1 {
     margin: 0;
+  }
+
+  .btn-filter {
+    display: flex;
+    align-items: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
