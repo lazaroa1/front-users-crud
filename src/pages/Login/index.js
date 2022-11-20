@@ -26,7 +26,7 @@ function Login() {
     );
 
     if (haveUser) {
-      navigate("/clients");
+      navigate("/users");
     } else {
       toast.error("Login ou Senha incorreto(a)");
     }

@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-function Layout({ children }) {
+function Layout({ children, size }) {
   return (
-    <Container>
+    <Container size={size}>
       <div className="content">{children}</div>
     </Container>
   );

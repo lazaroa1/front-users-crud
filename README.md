@@ -60,6 +60,6 @@
   - [x] Login
     - [x] Verificação dos dados
       - [ ] Consulta de de usuários
-        - [ ] Cadastro de usuários
+        - [x] Cadastro de usuários
           - [x] Alteracao de senha
 - [ ] Adição de mascaras para o cpf, telefone

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  .custom-imput {
-    background-color: pink;
+  .custom-select {
     padding: 5px;
     border-radius: 2px;
     border: none;

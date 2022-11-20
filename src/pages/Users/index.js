@@ -112,7 +112,7 @@ function Clients() {
   return (
     <div>
       <h1>Consulta de usuários</h1>
-      <button onClick={() => navigate("/client-info")}>Inserir um novo</button>
+      <button onClick={() => navigate("/user-info")}>Inserir um novo</button>
       <button onClick={disableAllUsers}>Remover usuário</button>
       <button onClick={() => navigate("/")}>Sair</button>
       <button onClick={() => exportToExcel(savedUsers, "TESTE")}>
@@ -304,7 +304,7 @@ function Clients() {
                 <p>{moment().diff(user.birth_date, "years")}</p>
               </td>
               <td>
-                <button onClick={() => navigate(`/client-info/${user.id}`)}>
+                <button onClick={() => navigate(`/user-info/${user.id}`)}>
                   Alterar
                 </button>
                 <button onClick={() => changeStatus("inativado", user.id)}>

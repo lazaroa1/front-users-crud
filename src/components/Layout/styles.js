@@ -10,8 +10,8 @@ export const Container = styled.div`
   .content {
     background-color: ${({ theme }) => theme.whiteTwo};
     border: 1px solid ${({ theme }) => theme.brownOne};
-    min-height: 40vh;
-    width: 60vh;
+    min-height: ${(props) => (props.size === "high" ? 80 : 40)}vh;
+    min-width: ${(props) => (props.size === "high" ? 40 : 60)}vh;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
