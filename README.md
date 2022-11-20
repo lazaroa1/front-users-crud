@@ -58,8 +58,8 @@
           - [ ] Adição de mascara no cadastro de usuario
 - [ ] Estilizar as telas
   - [x] Login
-    - [ ] Verificação dos dados
+    - [x] Verificação dos dados
       - [ ] Consulta de de usuários
         - [ ] Cadastro de usuários
-          - [ ] Adição de mascara no cadastro de usuario
+          - [x] Alteracao de senha
 - [ ] Adição de mascaras para o cpf, telefone
