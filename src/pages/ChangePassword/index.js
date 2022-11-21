@@ -2,7 +2,12 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function NewPassword() {
+import Input from "../../components/Input";
+import Layout from "../../components/Layout";
+import Button from "../../components/Button";
+import { Container } from "./styles";
+
+function ChangePassword() {
   const navigate = useNavigate();
   const { login } = useParams();
   const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -39,46 +44,42 @@ function NewPassword() {
         theme: "dark",
       });
     } else {
-      toast.error("As senhas não são idênticas", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-      });
+      toast.error("As senhas não são idênticas");
     }
   }
 
   return (
-    <div>
-      <h1>NEW PASSWORD</h1>
-      <form>
-        <div>
-          <label>Nova senha:</label>
-          <input
-            name="newPassword"
-            type="password"
-            value={password.newPassword}
-            onChange={changeValue}
-            autoComplete="on"
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input
-            name="confirmNewPassword"
-            type="password"
-            value={password.confirmNewPassword}
-            onChange={changeValue}
-            autoComplete="on"
-          />
-        </div>
-      </form>
-      <button onClick={() => changePassword(password)}>nova senha</button>
-    </div>
+    <Container>
+      <Layout>
+        <h1>Nova senha</h1>
+        <form>
+          <div>
+            <label>Nova senha:</label>
+            <Input
+              name="newPassword"
+              type="password"
+              value={password.newPassword}
+              onChange={changeValue}
+              autoComplete="on"
+            />
+          </div>
+          <div>
+            <label>Senha:</label>
+            <Input
+              name="confirmNewPassword"
+              type="password"
+              value={password.confirmNewPassword}
+              onChange={changeValue}
+              autoComplete="on"
+            />
+          </div>
+        </form>
+        <Button onClick={() => changePassword(password)}>
+          Confirmar senha
+        </Button>
+      </Layout>
+    </Container>
   );
 }
 
-export default NewPassword;
+export default ChangePassword;
