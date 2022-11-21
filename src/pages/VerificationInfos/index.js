@@ -14,6 +14,7 @@ function VerificationInfos() {
   const [userLogin, setUserLogin] = useState("");
 
   function verificationInfo() {
+    alert("here");
     const haveUser = users.some((user) => user.login === userLogin);
 
     if (haveUser) {
@@ -36,7 +37,9 @@ function VerificationInfos() {
             onChange={(event) => setUserLogin(event.target.value)}
           />
         </div>
-        <Button onClick={() => verificationInfo()}>verificar infomações</Button>
+        <Button onClick={() => verificationInfo({})}>
+          verificar infomações
+        </Button>
       </Layout>
     </Container>
   );
