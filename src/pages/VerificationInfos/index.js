@@ -36,7 +36,7 @@ function VerificationInfos() {
             onChange={(event) => setUserLogin(event.target.value)}
           />
         </div>
-        <Button onClick={verificationInfo}>verificar infomações</Button>
+        <Button onClick={() => verificationInfo()}>verificar infomações</Button>
       </Layout>
     </Container>
   );
