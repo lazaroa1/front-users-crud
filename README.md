@@ -2,7 +2,7 @@
 
 The project is a management of users using memory storage to save these users.
 
-### Tools used
+## Tools used
 - @react-pdf/renderer
 - file-saver
 - file-saver
@@ -12,7 +12,7 @@ The project is a management of users using memory storage to save these users.
 - react-toastify
 - styled-components
 
-### Tools used
+## Tools used
 To view the repository in more detail just clone and run the following commands:
 
 **Install dependencies**
@@ -21,5 +21,5 @@ To view the repository in more detail just clone and run the following commands:
 **Execute**
 ```npm start```
 
-### Author
+## Author
 - [Lazaro Alves](https://github.com/lazaroa1);
