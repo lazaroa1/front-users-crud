@@ -111,99 +111,109 @@ function Infos() {
       <Layout size="high">
         <h1>{id ? "Edição" : "Cadastro"} do usuário</h1>
         <div>
-          <label htmlFor="name">Nome:</label>
-          <Input
-            required
-            name="name"
-            type="text"
-            value={user.name}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="login">Login:</label>
-          <Input
-            name="login"
-            type="text"
-            value={user.login}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Senha:</label>
-          <Input
-            name="password"
-            type="password"
-            value={user.password}
-            onChange={changeValue}
-            autoComplete="on"
-          />
-        </div>
-        <div>
-          <label htmlFor="email">E-mail:</label>
-          <Input
-            name="email"
-            type="email"
-            value={user.email}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="telephone">Telefone:</label>
-          <Input
-            name="telephone"
-            type="text"
-            maxLength={13}
-            value={formatTelephoneNumber(user.telephone)}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="cpf">CPF:</label>
-          <Input
-            name="cpf"
-            type="text"
-            maxLength={14}
-            value={formatCpf(user.cpf)}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="mother_name">Nome da mãe:</label>
-          <Input
-            name="mother_name"
-            type="text"
-            value={user.mother_name}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="birth_date">Data de nascimento:</label>
-          <Input
-            name="birth_date"
-            type="date"
-            value={user.birth_date}
-            onChange={changeValue}
-          />
-        </div>
-        <div>
-          <label htmlFor="status">Status:</label>
-          <SelectComponent
-            name="status"
-            type="text"
-            value={user.status}
-            onChange={changeValue}
-          >
-            <option value="ativado" key="actived">
-              Ativado
-            </option>
-            <option value="inativado" key="inactivated">
-              Inativado
-            </option>
-            <option value="bloqueado" key="blocked">
-              Bloqueado
-            </option>
-          </SelectComponent>
+          <div className="group-form">
+            <div>
+              <label htmlFor="name">Nome:</label>
+              <Input
+                required
+                name="name"
+                type="text"
+                value={user.name}
+                onChange={changeValue}
+              />
+            </div>
+            <div>
+              <label htmlFor="login">Login:</label>
+              <Input
+                name="login"
+                type="text"
+                value={user.login}
+                onChange={changeValue}
+              />
+            </div>
+          </div>
+          <div className="group-form">
+            <div>
+              <label htmlFor="password">Senha:</label>
+              <Input
+                name="password"
+                type="password"
+                value={user.password}
+                onChange={changeValue}
+                autoComplete="on"
+              />
+            </div>
+            <div>
+              <label htmlFor="email">E-mail:</label>
+              <Input
+                name="email"
+                type="email"
+                value={user.email}
+                onChange={changeValue}
+              />
+            </div>
+          </div>
+          <div className="group-form">
+            <div>
+              <label htmlFor="telephone">Telefone:</label>
+              <Input
+                name="telephone"
+                type="text"
+                maxLength={13}
+                value={formatTelephoneNumber(user.telephone)}
+                onChange={changeValue}
+              />
+            </div>
+            <div>
+              <label htmlFor="cpf">CPF:</label>
+              <Input
+                name="cpf"
+                type="text"
+                maxLength={14}
+                value={formatCpf(user.cpf)}
+                onChange={changeValue}
+              />
+            </div>
+          </div>
+          <div className="group-form">
+            <div>
+              <label htmlFor="mother_name">Nome da mãe:</label>
+              <Input
+                name="mother_name"
+                type="text"
+                value={user.mother_name}
+                onChange={changeValue}
+              />
+            </div>
+            <div>
+              <label htmlFor="birth_date">Data de nascimento:</label>
+              <Input
+                name="birth_date"
+                type="date"
+                value={user.birth_date}
+                onChange={changeValue}
+              />
+            </div>
+            <div>
+              <label htmlFor="status">Status:</label>
+              <SelectComponent
+                name="status"
+                type="text"
+                value={user.status}
+                onChange={changeValue}
+              >
+                <option value="ativado" key="actived">
+                  Ativado
+                </option>
+                <option value="inativado" key="inactivated">
+                  Inativado
+                </option>
+                <option value="bloqueado" key="blocked">
+                  Bloqueado
+                </option>
+              </SelectComponent>
+            </div>
+          </div>
         </div>
         <Button onClick={() => onSubmit()}>
           {id ? "Salvar alteração" : "Salvar"}
