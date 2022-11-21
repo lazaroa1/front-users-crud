@@ -9,11 +9,13 @@ import { Container } from "./styles";
 
 function VerificationInfos() {
   const navigate = useNavigate();
-  const users = JSON.parse(localStorage.getItem("users"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const [userLogin, setUserLogin] = useState("");
 
-  function verificationInfo(haveUser) {
+  function verificationInfo() {
+    const haveUser = users.some((user) => user.login === userLogin);
+
     if (haveUser) {
       navigate(`/new-password/${userLogin}`);
     } else {
@@ -34,13 +36,7 @@ function VerificationInfos() {
             onChange={(event) => setUserLogin(event.target.value)}
           />
         </div>
-        <Button
-          onClick={() =>
-            verificationInfo(users.some((user) => user.login === userLogin))
-          }
-        >
-          verificar infomações
-        </Button>
+        <Button onClick={verificationInfo}>verificar infomações</Button>
       </Layout>
     </Container>
   );

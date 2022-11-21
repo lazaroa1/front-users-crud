@@ -25,7 +25,7 @@ const USER_INITIAL_VALUE = {
 function Infos() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const users = JSON.parse(localStorage.getItem("users"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
   const loggedUsers = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
@@ -100,7 +100,7 @@ function Infos() {
 
   useMemo(() => {
     if (id) {
-      const user = JSON.parse(localStorage.getItem("users"));
+      const user = JSON.parse(localStorage.getItem("users")) || [];
 
       setUser(user[id - 1]);
     }

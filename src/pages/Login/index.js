@@ -17,19 +17,19 @@ function Login() {
   }
 
   function login({ login, password }) {
-    // const haveUser = users.some(
-    //   (user) => user.login === login && user.password === password
-    // );
+    const haveUser = users.some(
+      (user) => user.login === login && user.password === password
+    );
 
-    // if (haveUser) {
-    //   const user = users.filter((item) => item.login === login)[0];
+    if (haveUser) {
+      const user = users.filter((item) => item.login === login)[0];
 
-    //   sessionStorage.setItem("loggedUser", JSON.stringify(user));
+      sessionStorage.setItem("loggedUser", JSON.stringify(user));
 
-    navigate("/users");
-    // } else {
-    //   toast.error("Login ou Senha incorreto(a)");
-    // }
+      navigate("/users");
+    } else {
+      toast.error("Login ou Senha incorreto(a)");
+    }
   }
 
   return (
