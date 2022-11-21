@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
+import { formatCpf } from "../../../utils";
 import { Container, IconPencil, IconX, Pagination } from "./styles";
 
 function UsersTable({ users, savedUsers, filteredUsers, setFilteredUser }) {
@@ -76,7 +77,7 @@ function UsersTable({ users, savedUsers, filteredUsers, setFilteredUser }) {
                 <p>{user.name}</p>
               </td>
               <td>
-                <p>{user.cpf}</p>
+                <p>{formatCpf(user.cpf)}</p>
               </td>
               <td>
                 <p>{user.login}</p>

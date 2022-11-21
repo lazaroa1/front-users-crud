@@ -1,9 +1,10 @@
 /* eslint-disable array-callback-return */
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 import Input from "../../../components/Input";
 import SelectComponent from "../../../components/SelectComponent";
-import { getAge } from "../../../utils";
+import { getAge, formatCpf } from "../../../utils";
 import { Container, IconSearch } from "./styles";
 
 const USER_INITIAL_VALUE = {
@@ -48,7 +49,9 @@ function Filters({ savedUsers, setFilteredUser }) {
         return ubsersByAge;
       });
     }
-
+    toast.success(
+      `Foi encontrado ${users.length} de ${savedUsers.length} usuários`
+    );
     setFilteredUser(users);
   }
 
@@ -68,7 +71,8 @@ function Filters({ savedUsers, setFilteredUser }) {
         <Input
           name="cpf"
           type="text"
-          value={filters.cpf}
+          maxLength={14}
+          value={formatCpf(filters.cpf)}
           onChange={changeFilter}
         />
       </div>

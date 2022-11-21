@@ -7,6 +7,7 @@ import SelectComponent from "../../../components/SelectComponent";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
+import { formatCpf, formatTelephoneNumber } from "../../../utils";
 import { Container } from "./styles";
 
 const USER_INITIAL_VALUE = {
@@ -142,7 +143,7 @@ function Infos() {
             <Input
               name="telephone"
               type="text"
-              value={user.telephone}
+              value={formatTelephoneNumber(user.telephone)}
               onChange={changeValue}
             />
           </div>
@@ -151,7 +152,7 @@ function Infos() {
             <Input
               name="cpf"
               type="text"
-              value={user.cpf}
+              value={formatCpf(user.cpf)}
               onChange={changeValue}
             />
           </div>
