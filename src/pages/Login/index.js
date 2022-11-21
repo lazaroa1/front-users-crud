@@ -9,11 +9,7 @@ import { Container } from "./styles";
 
 function Login() {
   const navigate = useNavigate();
-  const users =
-    JSON.parse(localStorage.getItem("users")) ||
-    localStorage.setItem(
-      JSON.stringify([{ id: 1, login: "adm", password: "123" }])
-    );
+  const users = JSON.parse(localStorage.getItem("users")) || [];
   const [loginForm, setLoginForm] = useState({ login: "", password: "" });
 
   function changeValue(e) {
@@ -26,6 +22,10 @@ function Login() {
     );
 
     if (haveUser) {
+      const user = users.filter((item) => item.login === login)[0];
+
+      sessionStorage.setItem("loggedUser", JSON.stringify(user));
+
       navigate("/users");
     } else {
       toast.error("Login ou Senha incorreto(a)");
@@ -56,6 +56,7 @@ function Login() {
           />
         </div>
         <a href="/verification-infos">esqueci minha senha</a>
+        <a href="/user-info">cadastrar usuário</a>
         <Button onClick={() => login(loginForm)}>Login</Button>
       </Layout>
     </Container>

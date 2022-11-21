@@ -20,7 +20,7 @@ function FunctionsButtons({ savedUsers }) {
     <Container>
       <button onClick={() => navigate("/user-info")}>Inserir usuário</button>
       <button onClick={disableAllUsers}>Remover usuário</button>
-      <button onClick={() => navigate("/")}>Deslogar</button>
+      <button onClick={() => navigate("/")}>Sair da conta</button>
       {savedUsers.length > 0 && (
         <>
           <button onClick={() => exportToExcel(savedUsers, "Users")}>

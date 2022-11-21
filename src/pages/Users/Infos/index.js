@@ -26,6 +26,7 @@ function Infos() {
   const navigate = useNavigate();
   const { id } = useParams();
   const users = JSON.parse(localStorage.getItem("users"));
+  const loggedUsers = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [user, setUser] = useState(USER_INITIAL_VALUE);
 
   function changeValue(e) {
@@ -43,6 +44,12 @@ function Infos() {
   function createUser() {
     const userExists = users.some((item) => item.login === user.login);
 
+    for (let key in user) {
+      if (user[key] === "") {
+        return toast.warn("Todos os campos devem ser preenchidos");
+      }
+    }
+
     if (!userExists) {
       localStorage.setItem(
         "users",
@@ -56,8 +63,11 @@ function Infos() {
           },
         ])
       );
-
-      navigate("/users");
+      if (loggedUsers) {
+        navigate("/users");
+      } else {
+        navigate("/");
+      }
 
       toast.success("Usuário cadastrado");
     } else {
@@ -104,6 +114,7 @@ function Infos() {
           <div>
             <label htmlFor="name">Nome:</label>
             <Input
+              required
               name="name"
               type="text"
               value={user.name}
@@ -143,6 +154,7 @@ function Infos() {
             <Input
               name="telephone"
               type="text"
+              maxLength={13}
               value={formatTelephoneNumber(user.telephone)}
               onChange={changeValue}
             />
@@ -152,6 +164,7 @@ function Infos() {
             <Input
               name="cpf"
               type="text"
+              maxLength={14}
               value={formatCpf(user.cpf)}
               onChange={changeValue}
             />
