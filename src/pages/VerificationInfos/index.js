@@ -13,10 +13,7 @@ function VerificationInfos() {
 
   const [userLogin, setUserLogin] = useState("");
 
-  function verificationInfo() {
-    const haveUser = users.some((user) => user.login === userLogin);
-    alert(haveUser, users);
-
+  function verificationInfo(haveUser) {
     if (haveUser) {
       navigate(`/new-password/${userLogin}`);
     } else {
@@ -37,7 +34,11 @@ function VerificationInfos() {
             onChange={(event) => setUserLogin(event.target.value)}
           />
         </div>
-        <Button onClick={() => verificationInfo({})}>
+        <Button
+          onClick={() =>
+            verificationInfo(users.some((user) => user.login === userLogin))
+          }
+        >
           verificar infomações
         </Button>
       </Layout>
