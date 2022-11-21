@@ -14,12 +14,12 @@ function VerificationInfos() {
   const [userLogin, setUserLogin] = useState("");
 
   function verificationInfo() {
-    alert("here");
     const haveUser = users.some((user) => user.login === userLogin);
 
     if (haveUser) {
       navigate(`/new-password/${userLogin}`);
     } else {
+      alert("here");
       toast.error("Não possui nenhum usuário com esse login");
     }
   }
