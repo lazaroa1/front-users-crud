@@ -15,11 +15,11 @@ function VerificationInfos() {
 
   function verificationInfo() {
     const haveUser = users.some((user) => user.login === userLogin);
+    alert(haveUser, users);
 
     if (haveUser) {
       navigate(`/new-password/${userLogin}`);
     } else {
-      alert("here");
       toast.error("Não possui nenhum usuário com esse login");
     }
   }
