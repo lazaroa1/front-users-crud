@@ -5,14 +5,13 @@ The project is a management of users using memory storage to save these users.
 ## Tools used
 - @react-pdf/renderer
 - file-saver
-- file-saver
 - react-paginate
 - react-icons
 - react-router-dom
 - react-toastify
 - styled-components
 
-## Tools used
+## Installation
 To view the repository in more detail just clone and run the following commands:
 
 **Install dependencies**
